@@ -1,12 +1,14 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Col, Row, Container} from 'react-bootstrap'
-import WaitingRoom from './components/waitingroom'
+import WaitingRoom from './components/WaitingRoom'
 import { useState } from 'react';
 import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
+import ChatRoom from './components/ChatRoom';
 
 function App() {
-  const [conn, setConnection] = useState();
+  const [connection, setConnection] = useState();
+  const [messages, setMessages] = useState([]);
   
   const joinChatRoom = async (username, chatroom) => {
     try {
@@ -19,6 +21,12 @@ function App() {
       //set up handler
       conn.on("JoinSpecificChatRoom", (username, msg) => {
         console.log("msg: ", msg);
+        setMessages((messages) => [...messages, { username, msg }]);
+      });
+      
+      conn.on("ReceiveSpecificMessage", (username, msg) => {
+        console.log("msg: ", msg, " username ", username);
+        setMessages(messages => [...messages, {username, msg}]);
       });
 
       await conn.start();
@@ -31,6 +39,15 @@ function App() {
     }
   }
 
+  const sendMessage = async (message) => {
+    try {
+      await connection.invoke("SendMessage", message);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+
   return (
     <div>
       <main>
@@ -40,7 +57,10 @@ function App() {
               <h1 className='font-weight-light'>Welcome to the F1 ChatApp</h1>
             </Col>
           </Row>
-          <WaitingRoom joinChatRoom={joinChatRoom}></WaitingRoom>
+          {!connection
+            ? <WaitingRoom joinChatRoom={joinChatRoom}></WaitingRoom>
+            : <ChatRoom messages={messages} sendMessage={sendMessage}> </ChatRoom>
+          }
         </Container>
       </main>
     </div>
