@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KkXr9UCzQNNTl+xsvswPPXBEMQdzGYeUuWtoTX/GiViJRbtQrKGt0tUX2e9Zirw3TIedL6YxiQ1aO9svSC+31w==",
+  "dgSpecHash": "Ud2fSbuhWGzT6wGfQBuyRLH61N/S3Q672UUDgBvmrVHShJ0uP0szozRal4OzHaR61NVdkZ4fVL4Z6i9/JI5bzA==",
   "success": true,
-  "projectFilePath": "C:\\code\\FormulaOne.ChatService\\FormulaOne.ChatService.csproj",
+  "projectFilePath": "C:\\code\\FormulaOne\\FormulaOne.ChatService\\FormulaOne.ChatService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jerry.castro\\.nuget\\packages\\jquery\\1.6.4\\jquery.1.6.4.nupkg.sha512",
     "C:\\Users\\jerry.castro\\.nuget\\packages\\microsoft.aspnet.signalr\\2.4.3\\microsoft.aspnet.signalr.2.4.3.nupkg.sha512",
